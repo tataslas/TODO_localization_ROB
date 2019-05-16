@@ -10,5 +10,9 @@ end
 %Calculo ldx y ldy
 for k=1:522
     Tw_r = transl(matrix_pose(k,1), matrix_pose(k,2),0)*trotz(matrix_pose(k,3));
-    %ldx_nuestra = Tw_r* 
+    for l=1:360
+        aux = Tw_r*[land_x(k,l); land_y(k,l); 0; 0];
+        ldx_nuestra(k,l) = aux(1);
+        ldy_nuestra(k,l) = aux(2);
+    end
 end

@@ -36,7 +36,7 @@ end
 ts=0.02; 
 S = 243/2;
 
-IC = [8.65,17.2,-pi/2]
+IC = [8.65,17.2,-pi/2];
 x_ini=IC(1);
 y_ini=IC(2);
 theta_ini=IC(3);
