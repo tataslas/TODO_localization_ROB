@@ -1,7 +1,7 @@
 
 clear
 close all
-load('Work_Space_Localization_Short_project.mat')
+load('Work_Space_Localization_Short_project.mat');
 
 for index=1:522 % Use the for loop to see a movie
    Ls(index,1) = data_enc(index,1);
@@ -12,7 +12,7 @@ for index=1:522 % Use the for loop to see a movie
 end
 
 Robot= [0 -0.2 0 1;0.4 0 0 1;0 0.2 0 1]';% The Robot icon is a triangle
-data = data_enc
+data = data_enc;
 
 dist = 0;
 angulo = 0;
@@ -45,17 +45,21 @@ x_w=x_ini;
 y_w=y_ini;
 suma_theta=-theta_ini; 
 
-ProcNoiseD = [0.000100000000000000]
-ProcNoiseTheta = [1.00000000000000e-06]
-V=[ProcNoiseD 0;0 ProcNoiseTheta]
+ProcNoiseD = [0.000100000000000000];
+ProcNoiseTheta = [1.00000000000000e-06];
+V=[ProcNoiseD 0;0 ProcNoiseTheta];
     
 for index=1:522
     delta_th = ((Rmio(index,2)-Lmio(index,2))/(2*S));
     delta_d = (Rmio(index,2)+Lmio(index,2))/2;
     
-    x_w = x_w + (delta_d + V(1,1))*cos(suma_theta + delta_th + V(2,2))
-    y_w = y_w + (delta_d + V(1,1))*sin(suma_theta + delta_th + V(2,2))
+    x_w = x_w + (delta_d + V(1,1))*cos(suma_theta + delta_th + V(2,2));
+    y_w = y_w + (delta_d + V(1,1))*sin(suma_theta + delta_th + V(2,2));
     suma_theta=mod((suma_theta + delta_th + V(2,2)) ,2*pi); 
+    
+    matrix_pose(index,1) = x_w;
+    matrix_pose(index,2) = y_w;
+    matrix_pose(index,3) = suma_theta;
     
     traj(index,1) = x_w;
     traj(index,2) = y_w;
@@ -64,7 +68,7 @@ for index=1:522
     %Pose_t=[x_w;y_w;suma_theta];
 end
 
-plot (traj(:,1), traj(:,2), 'r.','LineWidth',1.5) % Plotting the trajectory 
+plot (traj(:,1), traj(:,2), 'r.','LineWidth',1.5); % Plotting the trajectory 
 
 
 

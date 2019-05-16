@@ -6,3 +6,9 @@ for i=1:523
         land_y(i,j) = (lds_dis(i,j)*sind(j))/1000;
     end
 end
+
+%Calculo ldx y ldy
+for k=1:522
+    Tw_r = transl(matrix_pose(k,1), matrix_pose(k,2),0)*trotz(matrix_pose(k,3));
+    %ldx_nuestra = Tw_r* 
+end
